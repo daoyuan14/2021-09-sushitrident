@@ -27,17 +27,6 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - [ ] Add all of the code to this repo that you want reviewed
 - [ ] Create a PR to this repo with the above changes.
 
----
-
-# ⭐️ Sponsor: Provide marketing details
-
-- [ ] Your logo (URL or add file to this repo - SVG or other vector format preferred)
-- [ ] Your primary Twitter handle
-- [ ] Any other Twitter handles we can/should tag in (e.g. organizers' personal accounts, etc.)
-- [ ] Your Discord URI
-- [ ] Your website
-- [ ] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example? 
-- [ ] Optional: your logo in Discord emoji format
 
 ---
 
@@ -73,7 +62,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Submit findings [using the C4 form](https://code423n4.com/2021-09-sushi-trident-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts September 16, 2021 at 00:00 UTC
-- Ends October 6, 2021 at 23:59 UTC
+- Ends September 29, 2021 at 23:59 UTC
 
 This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
