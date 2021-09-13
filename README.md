@@ -56,8 +56,8 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 ---
 
 # Sushi Trident contest details
-- 22,800 Sushi (~$285,000) main award pot
-- 1,200 Sushi (~$15,000) gas optimization award pot
+- 22,800 Sushi (~$190,000) main award pot
+- 1,200 Sushi (~$10,000) gas optimization award pot
 - Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
 - Submit findings [using the C4 form](https://code423n4.com/2021-09-sushi-trident-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
