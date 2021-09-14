@@ -65,21 +65,21 @@ Below are non-technical descroptions of Trident's different pool types. Under ea
 
 ## Constant Product
 
-Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/ConstantProductPool.sol
+Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/ConstantProductPool.sol  
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/ConstantProductPoolFactory.sol
 
 Constant pools are the pool type that users are most familiar with. They are the most “unbiased” automated market maker, as well as the AMM used in SushiSwap V1. They’re sometimes referred to as “lazy LPs” or “Classic LPs” Constant Product pools are composed 50% of one token and 50% of another. They’re best for pairing tokens that are not “mean reverting” or in price discovery.
 
 ## Hybrid Pool
 
-Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPoolFactory.sol
+Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPoolFactory.sol   
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPoolFactory.sol
 
 Like the Constant Product pool, Hybrid pools are made of two assets. The difference here is that these assets are weighted to the specifications of the pool creator’s design. These pools can be made of any percentage of two tokens equalling 100. As a result, when users make swaps in a Hybrid pool, the pool distributes the price impact across the two tokens according to the token weights, rather than distributing price impact across all tokens indifferently like the Constant Product pools do. In a Hybrid pool, the token with a larger percentage, the price impact will be lower because it distributes evenly across more tokens. Conversely, the token with the smaller percentage of the pool will have a higher price impact, because it distributes across fewer tokens.
  
 ## Index Pool
 
-Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/IndexPool.sol
+Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/IndexPool.sol  
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/IndexPoolFactory.sol
 
 Index pools are pools that can have many different tokens, usually all of similar price ranges. These are usually stable coins, or other “like-kind” tokens, such as ETH and stETH, or renBTC and WBTC. The assets available in each pool are ultimately decided by the pool creator. The percentage of tokens in the Index pool is balanced equally among every token. So, if the pool creator makes a pool of four tokens, each token will have 25% of the pool; five tokens, each token will have 20% of the pool; and so on. The benefit of these pools is that they allow users to use a stableswap curve with reduced price impacts. This curve anticipates prices of similar values, and swaps accordingly. Index pools are configurable to allow 2, 3, or up to 32 assets. 
