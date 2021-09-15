@@ -9,7 +9,7 @@
 
 # Contest Scope
 
-The focus for the contest is to try to find any errors in the logic of the Trident contract code that would enable an attacker to steal funds from any of the contracts, or do anything that is advantageous for an attacker at the expense of users. Wardens should assume that governance variables are set sensibly; However, if the wardens are able to find a way to change the value of a governance variable such that the users' funds could become susceptible to an attack as a result, this of course would be included in the scope of the contest. Wardens should not include social engineering approaches in this contest. Should you have any questions or urgent findings, representatives from Sushi will be available in the Code Arena Discord during the contest period. 
+The focus for the contest is to try to find any errors in the logic of the Trident contract code that would enable an attacker to steal funds from any of the contracts, or do anything that is advantageous for an attacker at the expense of users. Wardens should assume that governance variables are set sensibly; However, if the wardens are able to find a way to change the value of a governance variable such that users' funds could become susceptible to an attack as a result, this of course would be included in the scope of the contest. Wardens should not include social engineering approaches in this contest. Should you have any questions or urgent findings, representatives from Sushi will be available in the Code Arena Discord during the contest period. 
 
 A secondary, considerably smaller, gas optimization award pot is also available for wardens who minimize the cost in gwei for interacting with the Trident contracts in the scope of this contest.
 
@@ -18,7 +18,7 @@ The full codebase may be found in this repository: https://github.com/sushiswap/
 
 # Protocol Overview
 
-Trident is a liquidity market built to streamline DeFi’s most canonical AMM invariants into isomorphic, composable pool types: Constant Product, Hybrid, and Index. Trident can be thought of as an environment where developers can natively piece together their own extensible AMM curves and pools to be whitelisted on the Trident deployer, and the Trident router.
+Trident is a liquidity market built to streamline DeFi’s most canonical AMM invariants into isomorphic pool types: Constant Product, Hybrid, and Index. Trident can be thought of as an environment where developers can natively piece together their own extensible AMM curves to be whitelisted on the Trident deployer, and the Trident router.
 
 # Codebase
 
@@ -45,7 +45,7 @@ Below is a list of all of the contracts that are in scope for this contest. Plea
 
 https://github.com/sushiswap/trident/blob/master/contracts/deployer/MasterDeployer.sol
 
-Below is a non-technical description of the Master Deployer, which is a smart contract that can be found by following the link above.
+Below is a description of the Master Deployer, which is a smart contract that can be found by following the link above.
 
 New pool templates can be whitelisted and deployed on Trident. The deployer contract handles the whitelisting and removal of these pools. Pools added to the deployer pay a fee to the Sushibar for each transaction, the percentage of which is set in the Deployer.
 
@@ -53,40 +53,41 @@ New pool templates can be whitelisted and deployed on Trident. The deployer cont
 
 https://github.com/sushiswap/trident/blob/master/contracts/TridentRouter.sol
 
-Below is a non-technical description of the Trident Router, which is a smart contract that can be found by following the link above.
+Below is a description of the Trident Router, which is a smart contract that can be found by following the link above.
 
-While every type of pool on Trident is different, every pool essentially has the same swap function, as they all use the same routing engine, Tines. Tines is a multi-route, multi-hop routing engine that seeks the best price for users on every swap. 
+While every type of pool on Trident is different, every pool essentially has the same swap function, as they all use the same routing engine, Tines. Tines is a multi-route, multi-hop routing engine that seeks the best price for users on every swap. As well, the router supports complexPath functions, which return percentages of different tokens equalling 100%, and recovery functions that return mistakenly sent tokens.
 
 # Pool Types 
 
 https://github.com/sushiswap/trident/tree/master/contracts/pool
 
-Below are non-technical descroptions of Trident's different pool types. Under each header below, there are links to the repo for the pool factory as well as the pool itself. All of the contracts for the different pool types and factories can be found by following the link above.
+Below are descriptions of Trident's different pool types, and the Trident ERC20 contract. Under each header below, there are links to the repo for the pool factory as well as the pool itself. All of the contracts for the contracts below can be found by following the link above.
 
 ## Constant Product
 
 Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/ConstantProductPool.sol  
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/ConstantProductPoolFactory.sol
 
-Constant pools are the pool type that users are most familiar with. They are the most “unbiased” automated market maker, as well as the AMM used in SushiSwap V1. They’re sometimes referred to as “lazy LPs” or “Classic LPs” Constant Product pools are composed 50% of one token and 50% of another. They’re best for pairing tokens that are not “mean reverting” or in price discovery.
+Constant pools are the pool type that users are most familiar with. They are the most “unbiased” automated market maker, as well as the AMM used in SushiSwap V1. They’re sometimes referred to as “lazy LPs” or “Classic LPs” Constant Product pools are composed 50% of one token and 50% of another. 
 
 ## Hybrid Pool
 
-Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPoolFactory.sol   
+Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPool.sol   
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/HybridPoolFactory.sol
 
-Like the Constant Product pool, Hybrid pools are made of two assets. The difference here is that these assets are weighted to the specifications of the pool creator’s design. These pools can be made of any percentage of two tokens equalling 100. As a result, when users make swaps in a Hybrid pool, the pool distributes the price impact across the two tokens according to the token weights, rather than distributing price impact across all tokens indifferently like the Constant Product pools do. In a Hybrid pool, the token with a larger percentage, the price impact will be lower because it distributes evenly across more tokens. Conversely, the token with the smaller percentage of the pool will have a higher price impact, because it distributes across fewer tokens.
+Hybrid pools can be made of any percentage of two tokens equalling 100. As a result, when users make swaps in a Hybrid pool, the pool distributes the price impact across the two tokens according to the token weights, rather than distributing price impact across all tokens indifferently like the Constant Product pools do. In a Hybrid pool, the token with a larger percentage, the price impact will be lower because the impact distributes evenly across more tokens. Conversely, the token with the smaller percentage of the pool will have a higher price impact, because it distributes across fewer tokens.
  
 ## Index Pool
 
 Pool: https://github.com/sushiswap/trident/blob/master/contracts/pool/IndexPool.sol  
 Factory: https://github.com/sushiswap/trident/blob/master/contracts/pool/IndexPoolFactory.sol
 
-Index pools are pools that can have many different tokens, usually all of similar price ranges. These are usually stable coins, or other “like-kind” tokens, such as ETH and stETH, or renBTC and WBTC. The assets available in each pool are ultimately decided by the pool creator. The percentage of tokens in the Index pool is balanced equally among every token. So, if the pool creator makes a pool of four tokens, each token will have 25% of the pool; five tokens, each token will have 20% of the pool; and so on. The benefit of these pools is that they allow users to use a stableswap curve with reduced price impacts. This curve anticipates prices of similar values, and swaps accordingly. Index pools are configurable to allow 2, 3, or up to 32 assets. 
+Index pools are pools that can have many different tokens, usually all of similar price ranges. These are usually stable coins, or other “like-kind” tokens, such as ETH and stETH, or USDC and USDT. The assets available in each pool are ultimately decided by the pool creator. The percentage of tokens in the Index pool is balanced equally among every token. So, if the pool creator makes a pool of four tokens, each token will have 25% of the pool; five tokens, each token will have 20% of the pool; and so on. The benefit of these pools is that they allow users to use a stableswap curve with reduced price impacts. 
 
 ## TridentERC20.sol
 
 https://github.com/sushiswap/trident/blob/master/contracts/pool/TridentERC20.sol
 
-Below is a non-technical description of the Trident pool ERC20, which is a smart contract that can be found by following the link above.
+Below is a description of the Trident pool ERC20, which is a smart contract that can be found by following the link above.
 
+The Trident ERC20 contract supports fundamental ERC20 functions like approve, transfer, transferFrom, permit, mint and burn. It also has support for the EIP-2612 extension, which optimizes for gasless approvals.
