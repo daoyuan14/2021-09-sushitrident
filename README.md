@@ -2,7 +2,7 @@
 - 15,200 Sushi (~$190,000) main award pot
 - 800 Sushi (~$10,000) gas optimization award pot
 - Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
-- Submit findings [using the C4 form](https://code423n4.com/2021-09-sushi-trident-contest/submit)
+- Submit findings [using the C4 form](https://code423n4.com/2021-09-sushi-trident-contest-phase-1/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts September 16, 2021 at 00:00 UTC
 - Ends September 29, 2021 at 23:59 UTC
