@@ -15,6 +15,7 @@ A secondary, considerably smaller, gas optimization award pot is also available 
 
 # Codebase
 The full codebase may be found in this repository: https://github.com/sushiswap/trident
+The relevant commit hash is 9130b10efaf9c653d74dc7a65bde788ec4b354b5 on the master branch.
 
 # Protocol Overview
 
